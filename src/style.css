@@ -1,0 +1,39 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+  margin: -21px 0 0 0;
+}
+
+.container {
+  display: flex;
+}
+
+.bg-one {
+  background-color: #6befa3;
+  height: 105vh;
+  width: 40vw;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-one::before {
+  content: "";
+  position: absolute;
+  background-color: #efefef;
+  height: 150%;
+  width: 100%;
+  right: 0;
+  margin-right: calc(-150% / 2);
+  top: 50%;
+  margin-top: calc(-1350px / 2);
+  border-radius: 50% 0% 0% 50%;
+  z-index: -1;
+}
+
+.bg-two {
+  content: "";
+  height: 105vh;
+  width: 60vw;
+  background-color: #efefef;
+}
