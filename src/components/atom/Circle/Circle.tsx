@@ -1,10 +1,10 @@
 import "./style.css";
 
-type recivedNumbers = {
+type PropsType = {
   number: number;
 };
 
-const Circle = (props: recivedNumbers): JSX.Element | null => {
+const Circle = (props: PropsType): JSX.Element | null => {
   if (typeof props.number !== "number") {
     return null;
   }
