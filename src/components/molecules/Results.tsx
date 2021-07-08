@@ -1,10 +1,10 @@
-import Ball from "../atom/Ball";
+import Ball from "../atom/Circle";
 
 import "./style.css";
 
-const BallHolder = () => {
+const Results = () => {
   return (
-    <div className="ball-holder">
+    <div className="results">
       <Ball number={"06"} />
       <Ball number={"09"} />
       <Ball number={"28"} />
@@ -15,4 +15,4 @@ const BallHolder = () => {
   );
 };
 
-export default BallHolder;
+export default Results;
