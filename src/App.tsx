@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "./components/atom/footer/Footer";
+import Footer from "./components/atom/Footer/Footer";
 
 import "./style.css";
 
