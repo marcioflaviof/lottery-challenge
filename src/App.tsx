@@ -1,13 +1,11 @@
 import React from "react";
+import Background from "./components/background/Background";
 
 function App() {
   return (
-    <div className="container">
-      <div className="bg-one">
-        <h1>Hello World</h1>
-      </div>
-      <div className="bg-two"></div>
-    </div>
+    <>
+      <Background />
+    </>
   );
 }
 
