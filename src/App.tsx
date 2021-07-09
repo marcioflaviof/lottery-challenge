@@ -1,10 +1,17 @@
 import React from "react";
-import Background from "./components/background/Background";
+import Footer from "./components/atom/footer/Footer";
+
+import "./style.css";
 
 function App() {
   return (
     <>
-      <Background />
+      <div className="Background__container">
+        <div className="Background__green-container"></div>
+        <div className="Background__gray-container">
+          <Footer />
+        </div>
+      </div>
     </>
   );
 }
