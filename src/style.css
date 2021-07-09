@@ -4,12 +4,12 @@
   overflow: hidden;
 }
 
-.Background__container {
+.App__container {
   display: flex;
   flex-flow: column;
 }
 
-.Background__green-container {
+.App__navigation {
   background-color: #6befa3;
   height: 60vh;
   width: 100vw;
@@ -18,7 +18,7 @@
   overflow: hidden;
 }
 
-.Background__green-container::before {
+.App__navigation::before {
   content: "";
   position: absolute;
   background-color: #efefef;
@@ -33,7 +33,7 @@
   z-index: -1;
 }
 
-.Background__gray-container {
+.App__content {
   content: "";
   width: 100vw;
   height: 105vh;
@@ -41,16 +41,16 @@
 }
 
 @media (min-width: 1024px) {
-  .Background__container {
+  .App__container {
     flex-direction: row;
   }
 
-  .Background__green-container {
+  .App__navigation {
     height: 105vh;
     width: 40vw;
   }
 
-  .Background__green-container::before {
+  .App__navigation::before {
     height: 150%;
     width: 100%;
     top: 50%;
@@ -63,7 +63,7 @@
     z-index: -1;
   }
 
-  .Background__gray-container {
+  .App__content {
     width: 60vw;
   }
 }

@@ -6,9 +6,9 @@ import "./style.css";
 function App() {
   return (
     <>
-      <div className="Background__container">
-        <div className="Background__green-container"></div>
-        <div className="Background__gray-container">
+      <div className="App__container">
+        <div className="App__navigation"></div>
+        <div className="App__content">
           <Footer />
         </div>
       </div>
