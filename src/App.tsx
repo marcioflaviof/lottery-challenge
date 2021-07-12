@@ -1,9 +1,19 @@
-const App = (): JSX.Element => {
+import React from "react";
+import Footer from "./components/atoms/Footer/Footer";
+
+import "./style.css";
+
+function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <div className="App__container">
+        <div className="App__navigation"></div>
+        <div className="App__content">
+          <Footer />
+        </div>
+      </div>
+    </>
   );
-};
+}
 
 export default App;

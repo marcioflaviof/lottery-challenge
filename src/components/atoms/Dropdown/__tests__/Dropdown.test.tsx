@@ -2,12 +2,12 @@ import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
 import { render } from "@testing-library/react";
 import React from "react";
-import Dropdown from "../../Dropdown/Dropdown";
+import Dropdown from "../Dropdown";
 
 describe("Dropdown", () => {
   describe("when calls", () => {
     it("must render with 6 options", () => {
-      const { getByRole, debug } = render(<Dropdown />);
+      const { getByRole } = render(<Dropdown />);
 
       expect(getByRole("combobox")).toBeInTheDocument();
       expect(getByRole("combobox").childElementCount).toStrictEqual(6);
