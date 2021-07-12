@@ -1,6 +1,6 @@
 import "./style.css";
 
-const Dropdown = () => {
+const Dropdown = (): JSX.Element => {
   return (
     <select className="dropdown">
       <option value="">MEGA-SENA</option>
