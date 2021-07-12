@@ -1,0 +1,25 @@
+.Footer__container {
+  bottom: 30px;
+  right: 0;
+  left: 0;
+  position: absolute;
+  text-align: center;
+}
+
+.Footer__container p {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+@media (min-width: 1024px) {
+  .Footer__container {
+    bottom: 80px;
+    left: auto;
+    right: 10vw;
+  }
+
+  .Footer__container p {
+    font-size: 16px;
+  }
+}
