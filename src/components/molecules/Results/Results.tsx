@@ -1,16 +1,13 @@
-import Ball from "../atom/Circle";
+import Circle from "../atom/Circle";
 
 import "./style.css";
 
-const Results = () => {
+const Results = (results: number[]): JSX.Element => {
   return (
     <div className="results">
-      <Ball number={"06"} />
-      <Ball number={"09"} />
-      <Ball number={"28"} />
-      <Ball number={"33"} />
-      <Ball number={"37"} />
-      <Ball number={"40"} />
+      {results.map((circleNumber) => {
+        <Circle number={circleNumber} />;
+      })}
     </div>
   );
 };
