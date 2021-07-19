@@ -1,23 +1,19 @@
 import "@testing-library/jest-dom";
 import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/react";
 import React from "react";
+import { renderComponentCreator } from "../../../utils/component-creator/ComponentCreator";
 import Circle from "../Circle";
 
 describe("Circle", () => {
+  const renderComponent = renderComponentCreator(Circle, () => ({}));
+
   describe("when calls with correct arguments", () => {
     it("must render with passed number", () => {
-      const { getByText } = render(<Circle number={5} />);
+      const { getByText, debug, container } = renderComponent({ number: 6 });
+
+      debug(container);
 
       expect(getByText(/5/i)).toBeInTheDocument();
-    });
-  });
-
-  describe("when calls with incorrect arguments", () => {
-    it("must not render", () => {
-      const { queryByText } = render(<Circle number={"5"} />);
-
-      expect(queryByText(/5/i)).not.toBeInTheDocument();
     });
   });
 });
