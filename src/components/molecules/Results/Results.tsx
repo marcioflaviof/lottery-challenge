@@ -1,13 +1,17 @@
-import Circle from "../atom/Circle";
+import Circle from "../../atoms/Circle/Circle";
 
 import "./style.css";
 
-const Results = (results: number[]): JSX.Element => {
+type PropsType = {
+  results: number[];
+};
+
+const Results = (props: PropsType): JSX.Element => {
   return (
-    <div className="results">
-      {results.map((circleNumber) => {
-        <Circle number={circleNumber} />;
-      })}
+    <div data-testid="circle-results" className="results">
+      {props.results.map((circleNumber) => (
+        <Circle key={circleNumber} number={circleNumber} />
+      ))}
     </div>
   );
 };
