@@ -3,7 +3,7 @@ import Footer from "./components/atoms/Footer/Footer";
 
 import "./style.css";
 
-function App() {
+function App() : JSX.Element {
   return (
     <>
       <div className="App__container">
