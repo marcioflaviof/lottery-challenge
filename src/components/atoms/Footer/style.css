@@ -1,9 +1,12 @@
 .Footer__container {
+  display: flex;
   bottom: 30px;
   right: 0;
   left: 0;
   position: absolute;
   text-align: center;
+  justify-content: center;
+  margin: 0 80px;
 }
 
 .Footer__container p {
@@ -12,11 +15,12 @@
   font-weight: 400;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1080px) {
   .Footer__container {
     bottom: 80px;
     left: auto;
     right: 10vw;
+    margin: auto;
   }
 
   .Footer__container p {

@@ -1,4 +1,19 @@
 .results {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+  margin: 0px 40px;
+  max-height: 200px;
+  width: 100vw;
+}
+
+@media (min-width: 1080px) {
+  .results {
+    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin: auto;
+    max-height: 100vh;
+  }
 }

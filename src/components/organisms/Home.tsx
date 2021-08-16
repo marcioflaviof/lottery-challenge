@@ -1,6 +1,8 @@
 import Footer from "../atoms/Footer/Footer";
 import Results from "../molecules/Results/Results";
 
+import "./style.css";
+
 const Home = (): JSX.Element => {
   return (
     <>
