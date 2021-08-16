@@ -40,7 +40,7 @@
   background-color: #efefef;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1080px) {
   .App__container {
     flex-direction: row;
   }
