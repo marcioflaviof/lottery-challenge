@@ -1,18 +1,15 @@
-import React from "react";
-import Footer from "./components/atoms/Footer/Footer";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Home } from "./components/organisms/Home";
 
 import "./style.css";
 
-function App() : JSX.Element {
+function App(): JSX.Element {
   return (
-    <>
-      <div className="App__container">
-        <div className="App__navigation"></div>
-        <div className="App__content">
-          <Footer />
-        </div>
-      </div>
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Home} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
