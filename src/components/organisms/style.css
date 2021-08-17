@@ -4,6 +4,8 @@
 }
 
 .App__navigation {
+  display: flex;
+  flex-direction: column;
   background-color: #6befa3;
   height: 60vh;
   width: 100vw;
