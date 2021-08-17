@@ -18,23 +18,10 @@
   text-indent: 10px;
 }
 
-.dropdown__logo {
-  margin-top: 55px;
-  text-align: center;
-}
-
-.dropdown__logo h1 {
-  font-weight: 500;
-  color: #ffffff;
-  margin-top: 10px;
-}
-
 @media (min-width: 1080px) {
   .dropdown {
-    justify-content: space-between;
     position: absolute;
     top: 0;
     width: 60%;
-    height: 48vh;
   }
 }

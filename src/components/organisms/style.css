@@ -37,6 +37,17 @@
   display: flex;
 }
 
+.App__logo {
+  margin-top: 65px;
+  text-align: center;
+}
+
+.App__logo h1 {
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
 @media (min-width: 1080px) {
   .App__container {
     flex-direction: row;
@@ -62,5 +73,12 @@
 
   .App__content {
     width: 60vw;
+  }
+
+  .App__logo {
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    top: 35%;
   }
 }
