@@ -1,0 +1,84 @@
+.App__container {
+  display: flex;
+  flex-flow: column;
+}
+
+.App__navigation {
+  display: flex;
+  flex-direction: column;
+  background-color: #6befa3;
+  height: 60vh;
+  width: 100vw;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.App__navigation::before {
+  content: "";
+  position: absolute;
+  background-color: #efefef;
+  height: 40%;
+  width: 150%;
+  top: 100%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: calc(-50px / 2);
+  border-radius: 50% 50% 0% 0%;
+  z-index: -1;
+}
+
+.App__content {
+  content: "";
+  width: 100vw;
+  height: 105vh;
+  background-color: #efefef;
+  display: flex;
+}
+
+.App__logo {
+  margin-top: 65px;
+  text-align: center;
+}
+
+.App__logo h1 {
+  font-weight: 500;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+@media (min-width: 1080px) {
+  .App__container {
+    flex-direction: row;
+  }
+
+  .App__navigation {
+    height: 105vh;
+    width: 40vw;
+  }
+
+  .App__navigation::before {
+    height: 150%;
+    width: 100%;
+    top: 50%;
+    right: 0;
+    left: auto;
+    transform: none;
+    margin-right: calc(-150% / 2);
+    margin-top: calc(-1450px / 2);
+    border-radius: 50% 0% 0% 50%;
+    z-index: -1;
+  }
+
+  .App__content {
+    width: 60vw;
+  }
+
+  .App__logo {
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    top: 35%;
+  }
+}

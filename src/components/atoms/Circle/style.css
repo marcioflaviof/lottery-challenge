@@ -1,13 +1,22 @@
 .circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
   background-color: #ffffff;
-  width: 111px;
-  height: 106px;
-  text-align: center;
-  line-height: 106px;
-  font-size: 27px;
+  width: 76px;
+  height: 76px;
+  font-size: 20px;
   font-weight: 700;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  z-index: 1;
+  margin: 0px 17px;
+}
+
+@media (min-width: 1080px) {
+  .circle {
+    width: 111px;
+    height: 106px;
+    font-size: 27px;
+    margin: 10px 20px;
+    z-index: 1;
+  }
 }
