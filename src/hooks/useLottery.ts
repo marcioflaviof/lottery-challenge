@@ -1,8 +1,11 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Option } from "../components/atoms/Dropdown/Dropdown";
 
 type Result = {
-  getLotteries: () => Promise<Lottery[]>;
-  getResult: (lotteryId: string) => Promise<DrawingResult>;
+  options: Option[];
+  results: string[];
+  onOptionChange: (selectedOption: string) => Promise<void>;
 };
 
 type Lottery = {
@@ -15,6 +18,9 @@ type DrawingResult = {
 };
 
 const useLottery = (): Result => {
+  const [options, setOptions] = useState<Option[]>([]);
+  const [results, setResults] = useState<string[]>([]);
+
   const getLotteries = async () => {
     return axios
       .get<Array<{ id: number; nome: string }>>(
@@ -29,6 +35,22 @@ const useLottery = (): Result => {
         });
       });
   };
+
+  useEffect(() => {
+    const lotteries = async () =>
+      await getLotteries()
+        .then((lotteries) => {
+          return lotteries.map((lottery) => {
+            return {
+              id: lottery.id,
+              text: lottery.name.toUpperCase(),
+            } as Option;
+          });
+        })
+        .then((option) => setOptions(option));
+
+    void lotteries();
+  }, []);
 
   const getResult = async (lotteryId: string) => {
     const drawingRelation = await axios
@@ -57,9 +79,16 @@ const useLottery = (): Result => {
     return Promise.resolve({ numbers: [] });
   };
 
+  const onOptionChange = async (selectedOption: string) => {
+    const result = await getResult(selectedOption);
+
+    setResults(result.numbers);
+  };
+
   return {
-    getLotteries,
-    getResult,
+    options,
+    results,
+    onOptionChange,
   };
 };
 
