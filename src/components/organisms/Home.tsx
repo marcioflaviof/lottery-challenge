@@ -1,44 +1,32 @@
-import { useEffect, useState } from "react";
 import useLottery from "../../hooks/useLottery";
 import Dropdown from "../atoms/Dropdown/Dropdown";
 import Footer from "../atoms/Footer/Footer";
 import { Icon } from "../atoms/Icons/Icons";
 import Results from "../molecules/Results/Results";
-import { Option } from "../atoms/Dropdown/Dropdown";
 
 import "./style.css";
 
 const Home = (): JSX.Element => {
-  const [options, setOptions] = useState<Option[]>([]);
-  const [results, setResults] = useState<string[]>([]);
-  const { getLotteries, getResult } = useLottery();
+  const [lottery, setLottery] = useState("mega-sena");
+  const { onOptionChange, selectedOption, options, results } = useLottery();
 
-  const onOptionChange = async (selectedOption: string) => {
-    const result = await getResult(selectedOption);
-
-    setResults(result.numbers);
+  const choosedLottery: Record<string, string> = {
+    "0": "mega-sena",
+    "1": "quina",
+    "2": "lotofacil",
+    "3": "lotomania",
+    "4": "timemania",
+    "5": "dia-de-sorte",
   };
 
   useEffect(() => {
-    const lotteries = async () =>
-      await getLotteries()
-        .then((lotteries) => {
-          return lotteries.map((lottery) => {
-            return {
-              id: lottery.id,
-              text: lottery.name.toUpperCase(),
-            } as Option;
-          });
-        })
-        .then((option) => setOptions(option));
-
-    void lotteries();
-  }, []);
+    setLottery(choosedLottery[selectedOption]);
+  }, [selectedOption]);
 
   return (
     <>
       <div className="App__container">
-        <div className="App__navigation">
+        <div className={`App__navigation App__navigation--theme-${lottery}`}>
           <Dropdown options={options} onChange={onOptionChange} />
           <div className="App__logo">
             <Icon />
