@@ -65,8 +65,8 @@ const Home = (): JSX.Element => {
         </div>
         <div className="App__content">
           <Results circles={results} />
-          <Footer />
         </div>
+        <Footer />
       </div>
     </>
   );

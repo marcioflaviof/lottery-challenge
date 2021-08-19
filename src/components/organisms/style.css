@@ -32,7 +32,7 @@
 .App__content {
   content: "";
   width: 100vw;
-  height: 105vh;
+  min-height: 200px;
   background-color: #efefef;
   display: flex;
 }
@@ -73,6 +73,7 @@
 
   .App__content {
     width: 60vw;
+    min-height: auto;
   }
 
   .App__logo {
