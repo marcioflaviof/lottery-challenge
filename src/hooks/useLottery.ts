@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Option } from "../components/atoms/Dropdown/Dropdown";
+import { LOTTERY_API, LOTTERY_DRAW_API, LOTTERY_RESULTS_API } from "../config/env";
 
 type Result = {
   options: Option[];
-  results: string[];
-  onOptionChange: (selectedOption: string) => Promise<void>;
+  getResult: (lotteryId: string) => Promise<DrawingResult>;
 };
 
 type Lottery = {
@@ -19,21 +19,17 @@ type DrawingResult = {
 
 const useLottery = (): Result => {
   const [options, setOptions] = useState<Option[]>([]);
-  const [results, setResults] = useState<string[]>([]);
+  console.log(LOTTERY_API);
 
   const getLotteries = async () => {
-    return axios
-      .get<Array<{ id: number; nome: string }>>(
-        "https://brainn-api-loterias.herokuapp.com/api/v1/loterias"
-      )
-      .then((result) => {
-        return result.data.map((payload) => {
-          return {
-            id: payload.id,
-            name: payload.nome,
-          } as Lottery;
-        });
+    return axios.get<Array<{ id: number; nome: string }>>(LOTTERY_API).then((result) => {
+      return result.data.map((payload) => {
+        return {
+          id: payload.id,
+          name: payload.nome,
+        } as Lottery;
       });
+    });
   };
 
   useEffect(() => {
@@ -54,9 +50,7 @@ const useLottery = (): Result => {
 
   const getResult = async (lotteryId: string) => {
     const drawingRelation = await axios
-      .get<Array<{ loteriaId: string; concursoId: string }>>(
-        "https://brainn-api-loterias.herokuapp.com/api/v1/loterias-concursos"
-      )
+      .get<Array<{ loteriaId: string; concursoId: string }>>(LOTTERY_DRAW_API)
       .then((result) => {
         return result.data.filter(
           (payload: Record<string, number | string>) => payload.loteriaId == lotteryId
@@ -68,9 +62,7 @@ const useLottery = (): Result => {
 
     if (drawingRelation && drawingRelation.concursoId) {
       return axios
-        .get<{ numeros: string[] }>(
-          `https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${drawingRelation.concursoId}`
-        )
+        .get<{ numeros: string[] }>(`${LOTTERY_RESULTS_API}/${drawingRelation.concursoId}`)
         .then((result) => {
           return { numbers: result.data.numeros } as DrawingResult;
         });
@@ -79,16 +71,9 @@ const useLottery = (): Result => {
     return Promise.resolve({ numbers: [] });
   };
 
-  const onOptionChange = async (selectedOption: string) => {
-    const result = await getResult(selectedOption);
-
-    setResults(result.numbers);
-  };
-
   return {
     options,
-    results,
-    onOptionChange,
+    getResult,
   };
 };
 

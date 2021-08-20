@@ -1,6 +1,6 @@
 * {
   font-family: "Montserrat", sans-serif;
-  overflow: scroll;
+  overflow-x: hidden;
   box-sizing: border-box;
   margin: 0;
   padding: 0;

@@ -16,7 +16,11 @@ const Dropdown: React.FC<Props> = ({ options, onChange }) => {
     <div className="dropdown">
       <select className="dropdown__content" onChange={(e) => onChange(e.target.value)}>
         {options.map((option) => {
-          return <option value={option.id}>{option.text}</option>;
+          return (
+            <option key={option.id} value={option.id}>
+              {option.text}
+            </option>
+          );
         })}
       </select>
     </div>
