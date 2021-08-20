@@ -73,13 +73,6 @@ const useLottery = (): Result => {
     return Promise.resolve({ numbers: [] });
   };
 
-  const onOptionChange = async (selectedOption: string) => {
-    const result = await getResult(selectedOption);
-
-    setSelectedOption(selectedOption);
-    setResults(result.numbers);
-  };
-
   return {
     options,
     getResult,

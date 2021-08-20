@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import useLottery from "../../hooks/useLottery";
 import Dropdown from "../atoms/Dropdown/Dropdown";
 import Footer from "../atoms/Footer/Footer";
@@ -8,7 +9,9 @@ import "./style.css";
 
 const Home = (): JSX.Element => {
   const [lottery, setLottery] = useState("mega-sena");
-  const { onOptionChange, selectedOption, options, results } = useLottery();
+  const [results, setResults] = useState<string[]>([]);
+  const [dropdownOption, setDropdownOption] = useState("mega-sena");
+  const { getResult, options } = useLottery();
 
   const choosedLottery: Record<string, string> = {
     "0": "mega-sena",
@@ -20,8 +23,15 @@ const Home = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setLottery(choosedLottery[selectedOption]);
-  }, [selectedOption]);
+    setLottery(choosedLottery[dropdownOption]);
+  }, [dropdownOption]);
+
+  const onOptionChange = async (selectedOption: string) => {
+    setDropdownOption(selectedOption);
+    const result = await getResult(selectedOption);
+
+    setResults(result.numbers);
+  };
 
   return (
     <>
