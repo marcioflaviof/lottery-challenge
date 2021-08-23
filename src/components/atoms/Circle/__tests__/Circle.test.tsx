@@ -8,9 +8,9 @@ describe("Circle", () => {
 
   describe("when calls with correct arguments", () => {
     it("must render with passed number", () => {
-      const { getByText } = renderComponent({ number: 5 });
+      const { getByText } = renderComponent({ value: "5" });
 
-      expect(getByText(/5/i)).toBeInTheDocument();
+      expect(getByText(/5/)).toBeInTheDocument();
     });
   });
 });
