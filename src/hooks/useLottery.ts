@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { Option } from "../components/atoms/Dropdown/Dropdown";
 import { LOTTERY_API, LOTTERY_DRAW_API, LOTTERY_RESULTS_API } from "../config/env";
@@ -17,12 +17,13 @@ type DrawingResult = {
   numbers: string[];
 };
 
+const request = <T>(endpoint: string): Promise<AxiosResponse<T>> => axios.get(endpoint);
+
 const useLottery = (): Result => {
   const [options, setOptions] = useState<Option[]>([]);
-  console.log(LOTTERY_API);
 
   const getLotteries = async () => {
-    return axios.get<Array<{ id: number; nome: string }>>(LOTTERY_API).then((result) => {
+    return request<Array<{ id: number; nome: string }>>(LOTTERY_API).then((result) => {
       return result.data.map((payload) => {
         return {
           id: payload.id,
@@ -49,8 +50,9 @@ const useLottery = (): Result => {
   }, []);
 
   const getResult = async (lotteryId: string) => {
-    const drawingRelation = await axios
-      .get<Array<{ loteriaId: string; concursoId: string }>>(LOTTERY_DRAW_API)
+    const drawingRelation = await request<Array<{ loteriaId: string; concursoId: string }>>(
+      LOTTERY_DRAW_API
+    )
       .then((result) => {
         return result.data.filter(
           (payload: Record<string, number | string>) => payload.loteriaId == lotteryId
@@ -61,11 +63,11 @@ const useLottery = (): Result => {
       });
 
     if (drawingRelation && drawingRelation.concursoId) {
-      return axios
-        .get<{ numeros: string[] }>(`${LOTTERY_RESULTS_API}/${drawingRelation.concursoId}`)
-        .then((result) => {
-          return { numbers: result.data.numeros } as DrawingResult;
-        });
+      return request<{ numeros: string[] }>(
+        `${LOTTERY_RESULTS_API}/${drawingRelation.concursoId}`
+      ).then((result) => {
+        return { numbers: result.data.numeros } as DrawingResult;
+      });
     }
 
     return Promise.resolve({ numbers: [] });
