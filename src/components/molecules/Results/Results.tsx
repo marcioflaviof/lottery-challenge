@@ -3,14 +3,14 @@ import Circle from "../../atoms/Circle/Circle";
 import "./style.css";
 
 type PropsType = {
-  circles: number[];
+  circles: string[];
 };
 
-const Results = (props: PropsType): JSX.Element => {
+const Results = ({ circles }: PropsType): JSX.Element => {
   return (
     <div data-testid="circle-results" className="results">
-      {props.circles.map((circleNumber) => (
-        <Circle key={circleNumber} number={circleNumber} />
+      {circles.map((circleNumber) => (
+        <Circle key={circleNumber} value={circleNumber} />
       ))}
     </div>
   );

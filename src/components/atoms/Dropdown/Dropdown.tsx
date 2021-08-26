@@ -1,15 +1,27 @@
+import React from "react";
 import "./style.css";
 
-const Dropdown = (): JSX.Element => {
+export type Option = {
+  id: number;
+  text: string;
+};
+
+type Props = {
+  options: Array<Option>;
+  onChange: (selectedOption: string) => void;
+};
+
+const Dropdown: React.FC<Props> = ({ options, onChange }) => {
   return (
     <div className="dropdown">
-      <select className="dropdown__content">
-        <option value="">MEGA-SENA</option>
-        <option value="0">QUINA</option>
-        <option value="1">LOTOFACIL</option>
-        <option value="2">LOTOMANIA</option>
-        <option value="3">TIMEMANIA</option>
-        <option value="4">DIA DE SORTE</option>
+      <select className="dropdown__content" onChange={(e) => onChange(e.target.value)}>
+        {options.map((option) => {
+          return (
+            <option key={option.id} value={option.id}>
+              {option.text}
+            </option>
+          );
+        })}
       </select>
     </div>
   );
