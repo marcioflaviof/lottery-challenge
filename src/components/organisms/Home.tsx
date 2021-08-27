@@ -4,12 +4,13 @@ import Dropdown from "../atoms/Dropdown/Dropdown";
 import Footer from "../atoms/Footer/Footer";
 import { Icon } from "../atoms/Icons/Icons";
 import Results from "../molecules/Results/Results";
+import { useThemeContext } from "../../providers/theme/Context";
 import "./style.css";
 
 const Home = (): JSX.Element => {
-  const [lottery, setLottery] = useState("mega-sena");
   const [results, setResults] = useState<string[]>([]);
   const { getResult, options } = useLottery();
+  const { lottery, setLottery } = useThemeContext();
 
   const choosedLottery: Record<string, string> = {
     "0": "mega-sena",
