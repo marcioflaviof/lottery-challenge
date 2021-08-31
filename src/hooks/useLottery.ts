@@ -2,14 +2,14 @@ import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { LOTTERY_API, LOTTERY_DRAW_API, LOTTERY_RESULTS_API } from "../config/env";
 
-type Option = {
+type LotteryResult = {
   id: number;
   text: string;
   slug: string;
 };
 
 type Result = {
-  lotteries: Option[];
+  lotteries: LotteryResult[];
   getResult: (lotteryId: string) => Promise<DrawingResult>;
 };
 
@@ -25,7 +25,7 @@ type DrawingResult = {
 const request = <T>(endpoint: string): Promise<AxiosResponse<T>> => axios.get(endpoint);
 
 const useLottery = (): Result => {
-  const [lotteries, setLotteries] = useState<Option[]>([]);
+  const [lotteries, setLotteries] = useState<LotteryResult[]>([]);
 
   const getLotteries = async () => {
     return request<Array<{ id: number; nome: string }>>(LOTTERY_API).then((result) => {
@@ -38,6 +38,13 @@ const useLottery = (): Result => {
     });
   };
 
+  const dasherize = (slug: string) =>
+    slug
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .split(" ")
+      .join("-");
+
   useEffect(() => {
     const lotteries = async () =>
       await getLotteries()
@@ -46,12 +53,8 @@ const useLottery = (): Result => {
             return {
               id: lottery.id,
               text: lottery.name.toUpperCase(),
-              slug: lottery.name
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .split(" ")
-                .join("-"),
-            } as Option;
+              slug: dasherize(lottery.name),
+            } as LotteryResult;
           });
         })
         .then((option) => setLotteries(option));
