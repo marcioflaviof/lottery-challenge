@@ -5,6 +5,7 @@ import { LOTTERY_API, LOTTERY_DRAW_API, LOTTERY_RESULTS_API } from "../config/en
 type Option = {
   id: number;
   text: string;
+  slug: string;
 };
 
 type Result = {
@@ -45,6 +46,11 @@ const useLottery = (): Result => {
             return {
               id: lottery.id,
               text: lottery.name.toUpperCase(),
+              slug: lottery.name
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .split(" ")
+                .join("-"),
             } as Option;
           });
         })
