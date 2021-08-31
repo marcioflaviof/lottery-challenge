@@ -7,9 +7,9 @@ type ProviderProps = {
 };
 
 function ThemeProvider({ children }: ProviderProps): JSX.Element {
-  const [lottery, setLottery] = useState("mega-sena");
+  const [theme, setTheme] = useState("default");
 
-  return <ThemeContext.Provider value={{ lottery, setLottery }}>{children}</ThemeContext.Provider>;
+  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 }
 
 export { ThemeProvider };

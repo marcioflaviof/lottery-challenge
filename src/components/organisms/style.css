@@ -29,6 +29,10 @@
   z-index: -1;
 }
 
+.App__navigation--theme-default {
+  background-color: #6befa3;
+}
+
 .App__navigation--theme-mega-sena {
   background-color: #6befa3;
 }

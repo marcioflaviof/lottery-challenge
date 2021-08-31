@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-export type Option = {
+type Option = {
   id: number;
   text: string;
 };

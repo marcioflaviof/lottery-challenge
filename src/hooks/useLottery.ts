@@ -1,10 +1,14 @@
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import { Option } from "../components/atoms/Dropdown/Dropdown";
 import { LOTTERY_API, LOTTERY_DRAW_API, LOTTERY_RESULTS_API } from "../config/env";
 
+type Option = {
+  id: number;
+  text: string;
+};
+
 type Result = {
-  options: Option[];
+  lotteries: Option[];
   getResult: (lotteryId: string) => Promise<DrawingResult>;
 };
 
@@ -20,7 +24,7 @@ type DrawingResult = {
 const request = <T>(endpoint: string): Promise<AxiosResponse<T>> => axios.get(endpoint);
 
 const useLottery = (): Result => {
-  const [options, setOptions] = useState<Option[]>([]);
+  const [lotteries, setLotteries] = useState<Option[]>([]);
 
   const getLotteries = async () => {
     return request<Array<{ id: number; nome: string }>>(LOTTERY_API).then((result) => {
@@ -44,7 +48,7 @@ const useLottery = (): Result => {
             } as Option;
           });
         })
-        .then((option) => setOptions(option));
+        .then((option) => setLotteries(option));
 
     void lotteries();
   }, []);
@@ -74,7 +78,7 @@ const useLottery = (): Result => {
   };
 
   return {
-    options,
+    lotteries,
     getResult,
   };
 };

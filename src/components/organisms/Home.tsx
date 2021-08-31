@@ -9,20 +9,11 @@ import "./style.css";
 
 const Home = (): JSX.Element => {
   const [results, setResults] = useState<string[]>([]);
-  const { getResult, options } = useLottery();
-  const { lottery, setLottery } = useThemeContext();
-
-  const choosedLottery: Record<string, string> = {
-    "0": "mega-sena",
-    "1": "quina",
-    "2": "lotofacil",
-    "3": "lotomania",
-    "4": "timemania",
-    "5": "dia-de-sorte",
-  };
+  const { getResult, lotteries } = useLottery();
+  const { theme, setTheme } = useThemeContext();
 
   const onOptionChange = async (selectedOption: string) => {
-    setLottery(choosedLottery[selectedOption]);
+    setTheme(lotteries[parseInt(selectedOption)].text);
     const result = await getResult(selectedOption);
 
     setResults(result.numbers);
@@ -31,8 +22,8 @@ const Home = (): JSX.Element => {
   return (
     <>
       <div className="App__container">
-        <div className={`App__navigation App__navigation--theme-${lottery}`}>
-          <Dropdown options={options} onChange={onOptionChange} />
+        <div className={`App__navigation App__navigation--theme-${theme}`}>
+          <Dropdown options={lotteries} onChange={onOptionChange} />
           <div className="App__logo">
             <Icon />
             <h1>MEGA-SENA</h1>
