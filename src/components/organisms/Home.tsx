@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
   const { theme, setTheme } = useThemeContext();
 
   const onOptionChange = async (selectedOption: string) => {
-    setTheme(lotteries[parseInt(selectedOption)].slug);
+    setTheme(lotteries.filter((lottery) => lottery.id === parseInt(selectedOption))[0].slug);
     const result = await getResult(selectedOption);
 
     setResults(result.numbers);
