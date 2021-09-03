@@ -42,10 +42,10 @@ describe("useLottery", () => {
       const { result, waitFor } = renderHook(() => useLottery());
 
       await waitFor(() => {
-        result.current.options;
+        result.current.lotteries;
         void result.current.getResult("0");
 
-        expect(result.current.options.length).toEqual(2);
+        expect(result.current.lotteries.length).toEqual(2);
       });
     });
 
@@ -53,7 +53,7 @@ describe("useLottery", () => {
       const { result } = renderHook(() => useLottery());
 
       await act(async () => {
-        result.current.options;
+        result.current.lotteries;
         const results = await result.current.getResult("0");
 
         expect(results.numbers).toEqual(lotteryNumbers.numeros);
