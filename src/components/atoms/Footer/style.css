@@ -1,6 +1,7 @@
 .Footer__container {
   text-align: center;
-  margin: 50px 80px;
+  padding: 50px 80px;
+  background-color: #efefef;
 }
 
 .Footer__container p {
@@ -16,6 +17,7 @@
     left: auto;
     right: 10vw;
     margin: auto;
+    padding: 0;
   }
 
   .Footer__container p {

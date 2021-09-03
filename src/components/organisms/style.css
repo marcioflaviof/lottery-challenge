@@ -6,9 +6,9 @@
 .App__navigation {
   display: flex;
   flex-direction: column;
-  background-color: #6befa3;
   height: 60vh;
   width: 100vw;
+  background-color: #6befa3;
   position: relative;
   z-index: 0;
   overflow: hidden;
@@ -27,6 +27,34 @@
   margin-top: calc(-50px / 2);
   border-radius: 50% 50% 0% 0%;
   z-index: -1;
+}
+
+.App__navigation--theme-default {
+  background-color: #6befa3;
+}
+
+.App__navigation--theme-mega-sena {
+  background-color: #6befa3;
+}
+
+.App__navigation--theme-quina {
+  background-color: #8666ef;
+}
+
+.App__navigation--theme-lotofacil {
+  background-color: #dd7ac6;
+}
+
+.App__navigation--theme-lotomania {
+  background-color: #ffab64;
+}
+
+.App__navigation--theme-timemania {
+  background-color: #5aad7d;
+}
+
+.App__navigation--theme-dia-de-sorte {
+  background-color: #bfaf83;
 }
 
 .App__content {
